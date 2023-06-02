@@ -1,0 +1,21 @@
+{
+    "name": "holsterlabs/widget-bundle",
+    "description": "",
+    "type": "symfony-bundle",
+    "require": {
+        "php": ">=8.0",
+        "symfony/framework-bundle": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hl\\WidgetBundle\\": "src/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sven Kuhn",
+            "email": "kuhn@holsterlabs.de"
+        }
+    ]
+}
