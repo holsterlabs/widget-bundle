@@ -1,0 +1,4 @@
+services:
+    Hl\WidgetBundle\WidgetBuilder:
+        arguments:
+            $twig: "@twig"

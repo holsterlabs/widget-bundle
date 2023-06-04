@@ -1,0 +1,19 @@
+<div class="widget widget-{{ style }}">
+    {%- if icon is defined -%}
+        <div class="widget-icon{{ (icon_small is defined and icon_small == true) ? ' widget-icon-sm' : '' }}"><i class="hli hli-{{ icon }}"></i></div>
+    {%- endif -%}
+    {%- if heading is defined -%}
+        <div class="widget-heading">
+            <h4>{{ heading }}</h4>
+        </div>
+    {%- endif -%}
+    {{- block('widget') -}}
+
+    {%- if footer is defined -%}
+    <div class="widget-footer">
+        {%- for link in footer -%}
+            <a href="{{ link.href }}">{{ link.label }} <i class="hli hli-angle-right"></i></a>
+        {%- endfor -%}
+    </div>
+    {%- endif -%}
+</div>

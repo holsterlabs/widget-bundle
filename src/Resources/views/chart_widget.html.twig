@@ -1,0 +1,8 @@
+{% extends '@Widget/_layouts/widget.html.twig' %}
+
+{%- block widget -%}
+    {%- set content = content ?? '' -%}
+    <div class="widget-content" data-chart="{{ data|json_encode()|e }}">
+        <canvas></canvas>
+    </div>
+{%- endblock widget -%}

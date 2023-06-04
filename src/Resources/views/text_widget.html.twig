@@ -1,0 +1,12 @@
+{% extends '@Widget/_layouts/widget.html.twig' %}
+
+{%- block widget -%}
+    {%- set content = content ?? '' -%}
+    <div class="widget-content">
+        {%- if content_html is defined and content_html is same as(true) -%}
+            {{- text|raw -}}
+        {%- else -%}
+            {{- text -}}
+        {%- endif -%}
+    </div>
+{%- endblock widget -%}
