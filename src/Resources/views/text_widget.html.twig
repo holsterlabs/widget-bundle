@@ -3,7 +3,7 @@
 {%- block widget -%}
     {%- set content = content ?? '' -%}
     <div class="widget-content">
-        {%- if content_html is defined and content_html is same as(true) -%}
+        {%- if text_html is defined and text_html is same as(true) -%}
             {{- text|raw -}}
         {%- else -%}
             {{- text -}}
