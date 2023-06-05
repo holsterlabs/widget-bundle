@@ -4,7 +4,7 @@
     {%- endif -%}
     {%- if heading is defined -%}
         <div class="widget-heading">
-            <h4>{{ heading }}</h4>
+            <h4>{{ (translate is same as(false)) ? heading : heading|trans }}</h4>
         </div>
     {%- endif -%}
     {{- block('widget') -}}

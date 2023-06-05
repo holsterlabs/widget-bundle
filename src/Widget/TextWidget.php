@@ -11,8 +11,10 @@ class TextWidget extends AbstractWidget
         $this->configureDefaultOptions($resolver);
         $resolver->setDefaults([
             'text' => '',
+            'text_html' => false,
         ])
-        ->setAllowedTypes('text', 'string');
+            ->setAllowedTypes('text', 'string')
+            ->setAllowedTypes('text_html', 'bool');
     }
 
     public function getTemplatePath(): string

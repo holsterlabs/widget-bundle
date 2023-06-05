@@ -37,7 +37,7 @@ class AbstractWidget implements WidgetInterface
                     ->allowedTypes('string');
 
                 $subResolver->define('label')
-                ->required()
+                    ->required()
                     ->allowedTypes('string');
                 $links = array_map([$subResolver, 'resolve'], $links);
                 return true;
@@ -48,12 +48,13 @@ class AbstractWidget implements WidgetInterface
             'icon' => null,
             'icon_small' => false,
             'style' => 'primary',
+            'translate' => false,
         ])
-        ->setAllowedTypes('heading', ['null', 'string'])
-        ->setAllowedTypes('icon', ['null', 'string'])
-        ->setAllowedTypes('icon_small', ['bool'])
-        ->setAllowedTypes('style', ['null', 'string']);
-
+            ->setAllowedTypes('heading', ['null', 'string'])
+            ->setAllowedTypes('icon', ['null', 'string'])
+            ->setAllowedTypes('icon_small', ['bool'])
+            ->setAllowedTypes('style', ['null', 'string'])
+            ->setAllowedTypes('translate', 'bool');
     }
 
     public function getTemplatePath(): string
