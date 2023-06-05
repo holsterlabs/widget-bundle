@@ -1,0 +1,30 @@
+{% extends '@Widget/_layouts/widget.html.twig' %}
+
+{%- block widget -%}
+    {%- set content = content ?? '' -%}
+    <table class="widget-table">
+        <tbody>
+            {%- for line in list -%}
+            <tr>
+                <td>
+                    {%- if line.href is defined -%}
+                        <a href="{{ line.href }}">{{ line.title }}</a>
+                    {%- else -%}
+                        <span>{{ line.title }}</span>
+                    {%- endif -%}
+                    {%- if line.description is defined -%}
+                        <span>{{ line.description }}</span>
+                    {%- endif -%}
+                </td>
+                <td>
+                    {{ line.definition }}
+                </td>
+            </tr>
+            {# {%- else -%}
+            <tr>
+                <td>none</td>
+            </tr> #}
+            {%- endfor -%}
+        </tbody>
+    </table>
+{%- endblock widget -%}
