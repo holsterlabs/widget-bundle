@@ -2,7 +2,7 @@
 
 {%- block widget -%}
     {%- set content = content ?? '' -%}
-    <div class="widget-content" data-chart="{{ data|json_encode()|e }}">
+    <div class="widget-chart" data-chart="{{ data|json_encode()|e }}">
         <canvas></canvas>
     </div>
 {%- endblock widget -%}
