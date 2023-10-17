@@ -58,8 +58,8 @@ class LineChartWidget extends AbstractWidget
         //     'rgb(201, 203, 207)'
         // ];
         // $options['data']['datasets']['0']['backgroundColor'] = '#ff6384';
-        $options['data']['datasets']['0']['borderColor'] = '#fff';
-        $options['data']['datasets']['0']['borderWidth'] = 2;
+        // $options['data']['datasets']['0']['borderColor'] = '#fff';
+        // $options['data']['datasets']['0']['borderWidth'] = 2;
 
         $this->options['data'] = [
             'type' => 'line',
