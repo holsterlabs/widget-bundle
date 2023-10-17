@@ -16,7 +16,8 @@ class BarChartWidget extends AbstractWidget
         'rgb(201, 203, 207, .5)'
     ];
 
-    private function getColor($i) {
+    private function getColor($i)
+    {
         return $this->colors[($i % count($this->colors))];
     }
     public function __construct(array $options = [])
@@ -24,11 +25,17 @@ class BarChartWidget extends AbstractWidget
         $this->options = $options;
 
         foreach ($options['data']['datasets'] as $key => $dataset) {
-            $options['data']['datasets'][$key]['backgroundColor'] = [
-                $this->getColor($key)
-            ];
-            $options['data']['datasets'][$key]['borderColor'] = '#fff';
-            $options['data']['datasets'][$key]['borderWidth'] = 2;
+            if (!isset($options['data']['datasets'][$key]['backgroundColor'])) {
+                $options['data']['datasets'][$key]['backgroundColor'] = [
+                    $this->getColor($key)
+                ];
+            }
+            if (!isset($options['data']['datasets'][$key]['borderColor'])) {
+                $options['data']['datasets'][$key]['borderColor'] = '#fff';
+            }
+            if (!isset($options['data']['datasets'][$key]['borderWidth'])) {
+                $options['data']['datasets'][$key]['borderWidth'] = 2;
+            }
         }
 
         // $options['data']['datasets']['0']['backgroundColor'] = [
