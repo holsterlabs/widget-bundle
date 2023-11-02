@@ -36,22 +36,26 @@ class DoughnutChartWidget extends AbstractWidget
                     'type' => 'doughnut',
                     'options' => [],
                     'data' => function (OptionsResolver $dataResolver) {
-                            $dataResolver->setDefaults([
-                                'labels' => [],
-                                // 'datasets' => []
-                            ])
-                        ->setAllowedTypes('labels', 'array');
+                        $dataResolver->setDefaults([
+                            'labels' => [],
+                            // 'datasets' => []
+                        ])
+                            ->setAllowedTypes('labels', 'array');
                         $dataResolver->define('datasets')
                             ->allowedTypes('null', 'array[]')
                             ->allowedValues(static function (array &$links): bool {
                                 $subResolver = new OptionsResolver();
                                 $subResolver->define('label')
-                                ->required()
-                                ->allowedTypes('string');
+                                    ->required()
+                                    ->allowedTypes('string');
 
                                 $subResolver->define('data')
-                                ->required()
-                                ->allowedTypes('array');
+                                    ->required()
+                                    ->allowedTypes('array');
+                                $subResolver->define('borderColor')
+                                    ->allowedTypes('array');
+                                $subResolver->define('backgroundColor')
+                                    ->allowedTypes('array');
                                 $links = array_map([$subResolver, 'resolve'], $links);
                                 return true;
                             });
@@ -64,7 +68,7 @@ class DoughnutChartWidget extends AbstractWidget
             // $dataResolver->define('labels')
             //     ->allowedTypes('null', 'array[]')
             //     ->allowedValues('string');
-                // }
+            // }
         ]);
     }
 
