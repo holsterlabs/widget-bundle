@@ -10,7 +10,7 @@ class WidgetBuilder
 {
     private $widget;
 
-    public function __construct(private Environment $twig)
+    public function __construct(private readonly Environment $twig)
     {
     }
 
