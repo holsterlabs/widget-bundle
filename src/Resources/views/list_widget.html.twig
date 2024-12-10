@@ -8,16 +8,16 @@
             <tr>
                 <td>
                     {%- if line.href is defined -%}
-                        <a href="{{ line.href }}">{{ line.title }}</a>
+                        <a href="{{ line.href }}">{{ title_html ? line.title|raw : line.title }}</a>
                     {%- else -%}
-                        <span>{{ line.title }}</span>
+                        <span>{{ title_html ? line.title|raw : line.title }}</span>
                     {%- endif -%}
                     {%- if line.description is defined -%}
-                        <span>{{ line.description }}</span>
+                        <span>{{ description_html ? line.description|raw : line.description }}</span>
                     {%- endif -%}
                 </td>
                 <td>
-                    {{ line.definition }}
+                    {{ definition_html ? line.definition|raw : line.definition }}
                 </td>
             </tr>
             {# {%- else -%}

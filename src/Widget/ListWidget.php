@@ -9,38 +9,40 @@ class ListWidget extends AbstractWidget
     public function configureOptions(OptionsResolver $resolver)
     {
         $this->configureDefaultOptions($resolver);
-        $resolver
-            ->define('title_html')
+
+        $resolver->define('title_html')
             ->allowedTypes('bool')
-            ->define('description_html')
+            ->default(false);
+
+        $resolver->define('description_html')
             ->allowedTypes('bool')
-            ->define('definition_html')
+            ->default(false);
+
+        $resolver->define('definition_html')
             ->allowedTypes('bool')
-            ->define('list')
+            ->default(false);
+
+        $resolver->define('list')
             ->required()
             ->allowedTypes('null', 'array[]')
             ->allowedValues(static function (array &$lines): bool {
                 $subResolver = new OptionsResolver();
-                $subResolver
-                    ->define('href')
+                $subResolver->define('href')
                     ->allowedTypes('string');
 
-                $subResolver
-                    ->define('title')
+                $subResolver->define('title')
                     ->required()
                     ->allowedTypes('string');
 
-                $subResolver
-                    ->define('description')
+                $subResolver->define('description')
                     ->allowedTypes('string');
 
-                $subResolver
-                    ->define('definition')
+                $subResolver->define('definition')
                     ->allowedTypes('string');
 
-            $lines = array_map([$subResolver, 'resolve'], $lines);
-            return true;
-        });
+                $lines = array_map([$subResolver, 'resolve'], $lines);
+                return true;
+            });
     }
 
     public function getTemplatePath(): string
