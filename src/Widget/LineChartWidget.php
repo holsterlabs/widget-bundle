@@ -7,13 +7,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class LineChartWidget extends AbstractWidget
 {
     private $colors = [
-        'rgb(54, 162, 235)',
-        'rgb(255, 99, 132)',
-        'rgb(255, 159, 64, .5)',
-        'rgb(255, 205, 86, .5)',
-        'rgb(75, 192, 192, .5)',
-        'rgb(153, 102, 255, .5)',
-        'rgb(201, 203, 207, .5)'
+        '54, 162, 235',
+        '255, 99, 132',
+        '255, 159, 64',
+        '255, 205, 86',
+        '75, 192, 192',
+        '153, 102, 255',
+        '201, 203, 207'
     ];
 
     private function getColor($i)
@@ -27,11 +27,11 @@ class LineChartWidget extends AbstractWidget
         foreach ($options['data']['datasets'] as $key => $dataset) {
             if (!isset($options['data']['datasets'][$key]['backgroundColor'])) {
                 $options['data']['datasets'][$key]['backgroundColor'] = [
-                    $this->getColor($key)
+                    sprintf('rgb(%s,2)', $this->getColor($key))
                 ];
             }
             if (!isset($options['data']['datasets'][$key]['borderColor'])) {
-                $options['data']['datasets'][$key]['borderColor'] = $this->getColor($key);
+                $options['data']['datasets'][$key]['borderColor'] = sprintf('rgb(%s)', $this->getColor($key));
             }
             if (!isset($options['data']['datasets'][$key]['borderWidth'])) {
                 $options['data']['datasets'][$key]['borderWidth'] = 2;
