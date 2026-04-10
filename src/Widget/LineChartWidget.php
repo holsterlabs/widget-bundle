@@ -6,20 +6,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class LineChartWidget extends AbstractWidget
 {
-    private $colors = [
-        '54, 162, 235',
-        '255, 99, 132',
-        '255, 159, 64',
-        '255, 205, 86',
-        '75, 192, 192',
-        '153, 102, 255',
-        '201, 203, 207'
-    ];
 
-    private function getColor($i)
-    {
-        return $this->colors[($i % count($this->colors))];
-    }
     public function __construct(array $options = [])
     {
         $this->options = $options;
@@ -27,39 +14,16 @@ class LineChartWidget extends AbstractWidget
         foreach ($options['data']['datasets'] as $key => $dataset) {
             if (!isset($options['data']['datasets'][$key]['backgroundColor'])) {
                 $options['data']['datasets'][$key]['backgroundColor'] = [
-                    sprintf('rgb(%s,2)', $this->getColor($key))
+                    $this->getColor($key, $options['backgroundOpacity'] ?? $this->backgroundOpacity)
                 ];
             }
             if (!isset($options['data']['datasets'][$key]['borderColor'])) {
-                $options['data']['datasets'][$key]['borderColor'] = sprintf('rgb(%s)', $this->getColor($key));
+                $options['data']['datasets'][$key]['borderColor'] = $this->getColor($key, $options['borderOpacity'] ?? $this->borderOpacity);
             }
             if (!isset($options['data']['datasets'][$key]['borderWidth'])) {
                 $options['data']['datasets'][$key]['borderWidth'] = 2;
             }
         }
-
-        // $options['data']['datasets']['0']['backgroundColor'] = [
-        //     'rgb(54, 162, 235)',
-        //     // 'rgb(255, 99, 132)',
-        //     // 'rgb(255, 159, 64, .5)',
-        //     // 'rgb(255, 205, 86, .5)',
-        //     // 'rgb(75, 192, 192, .5)',
-        //     // 'rgb(153, 102, 255, .5)',
-        //     // 'rgb(201, 203, 207, .5)'
-        // ];
-
-        // $options['data']['datasets']['0']['borderColor'] = [
-        //     'rgb(255, 99, 132)',
-        //     'rgb(255, 159, 64)',
-        //     'rgb(255, 205, 86)',
-        //     'rgb(75, 192, 192)',
-        //     'rgb(54, 162, 235)',
-        //     'rgb(153, 102, 255)',
-        //     'rgb(201, 203, 207)'
-        // ];
-        // $options['data']['datasets']['0']['backgroundColor'] = '#ff6384';
-        // $options['data']['datasets']['0']['borderColor'] = '#fff';
-        // $options['data']['datasets']['0']['borderWidth'] = 2;
 
         $this->options['data'] = [
             'type' => 'line',
@@ -75,8 +39,6 @@ class LineChartWidget extends AbstractWidget
                 ]
             ]
         ];
-
-        // dd($this->options);
     }
 
     public function configureOptions(OptionsResolver $resolver)
