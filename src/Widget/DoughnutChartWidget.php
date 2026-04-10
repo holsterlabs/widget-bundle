@@ -10,6 +10,16 @@ class DoughnutChartWidget extends AbstractWidget
     {
         $this->options = $options;
 
+        foreach ($options['data']['datasets'] as $key => $dataset) {
+            $count = count($options['data']['datasets'][$key]['data']);
+            if (!isset($options['data']['datasets'][$key]['backgroundColor'])) {
+                $options['data']['datasets'][$key]['backgroundColor'] = $this->getColors($count, $options['backgroundOpacity'] ?? $this->backgroundOpacity);
+            }
+            if (!isset($options['data']['datasets'][$key]['borderColor'])) {
+                $options['data']['datasets'][$key]['borderColor'] = $this->getColors($count, $options['borderOpacity'] ?? $this->borderOpacity);
+            }
+        }
+
         $this->options['data'] = [
             'type' => 'doughnut',
             'data' => $options['data'],
@@ -62,13 +72,6 @@ class DoughnutChartWidget extends AbstractWidget
                     }
                 ]);
             }
-
-
-            // function (OptionsResolver $dataResolver) {
-            // $dataResolver->define('labels')
-            //     ->allowedTypes('null', 'array[]')
-            //     ->allowedValues('string');
-            // }
         ]);
     }
 
